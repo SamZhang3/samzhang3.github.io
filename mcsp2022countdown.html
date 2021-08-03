@@ -65,7 +65,7 @@
                 var xkcd1017 = Math.exp(20.3444 * Math.pow(fractionPassed, 3) + 3) - Math.exp(3);
                 var xkcd1017Text;
                 if (xkcd1017 < 2000) {
-                    var tmp = new Date(now.getTime() - xkcd1017 * 86400 * 365.2425);
+                    var tmp = new Date(now.getTime() - xkcd1017 * 86400 * 365.2425 * 1000);
                     xkcd1017Text = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][ tmp.getMonth()] + " " + tmp.getDate().toString() + ", " + tmp.getFullYear().toString();
                 } else {
                     xkcd1017Text = Math.floor(xkcd1017).toLocaleString() + " years ago";
