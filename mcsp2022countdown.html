@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <title>Meaningless Counters Stepping as time Passes</title>
+        <style>
+            div {
+                font-family: sans-serif;
+                margin: 15px 5px 15px 5px;
+            }
+            h1 {
+                font-family: sans-serif;
+                text-align: center;
+            }
+            #subtitle {
+                text-align: center;
+                font-style: italic;
+            }
+            #progress-bar {
+                width: 400px;
+                height: 15px;
+                border: 1px solid black;
+                padding: 0px;
+                overflow: hidden;
+            }
+            #progress {
+                margin: 0px;
+                background-color: rgb(25, 112, 48);
+                width: 400px;
+            }
+            #footnotes {
+                margin-top: 100px;
+                font-style: italic;
+                font-size: 9px;
+            }
+        </style>
+        <script>
+            var goal = new Date(2022, 6, 2, 0, 0, 0, 0);
+            var webpageTimer = 0;
+            function zeropad(x) {
+                return x < 10 ? "0" + x.toString() : x.toString();
+            }
+            setInterval(function() {
+                webpageTimer++;
+                var now = new Date();
+                var msDiff = goal.getTime() - now.getTime();
+                var weeks = Math.floor(msDiff / (7 * 86400 * 1000));
+                var days = Math.floor(msDiff / (86400 * 1000)) % 7;
+                var hours = Math.floor(msDiff / (3600 * 1000)) % 24;
+                var minutes = Math.floor(msDiff / (60 * 1000)) % 60;
+                var seconds = Math.floor(msDiff / 1000) % 60;
+                var WDHMSelem = document.getElementById("countdown-wdhms");
+                WDHMSelem.innerText = weeks.toString() + " weeks " + days.toString() + " days " + hours + " hours " + minutes.toString() + " minutes " + seconds.toString() + " seconds";
+                var Selem = document.getElementById("countdown-s");
+                Selem.innerText = Math.floor(msDiff / 1000) + " seconds";
+                var percentElem = document.getElementById("countdown-percent");
+                var totalTime = goal.getTime() - new Date(2021, 7, 9, 0, 0, 0, 0).getTime();
+                var fractionPassed = (totalTime - msDiff) / totalTime;
+                percentElem.innerText = (100 * fractionPassed).toFixed(8) + "%";
+
+                var progressBarElem = document.getElementById("progress");
+                progressBarElem.style.width = Math.max((fractionPassed * 400).toString(), 0) + "px";
+
+                var xkcd1017 = Math.exp(20.3444 * Math.pow(fractionPassed, 3) + 3) - Math.exp(3);
+                var xkcd1017Text;
+                if (xkcd1017 < 2000) {
+                    var tmp = new Date(now.getTime() - xkcd1017 * 86400 * 365.2425);
+                    xkcd1017Text = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][ tmp.getMonth()] + " " + tmp.getDate().toString() + ", " + tmp.getFullYear().toString();
+                } else {
+                    xkcd1017Text = Math.floor(xkcd1017).toLocaleString() + " years ago";
+                }
+                var xkcdElem = document.getElementById("xkcd1017");
+                xkcdElem.innerText = xkcd1017Text;
+
+                var webpageCountdown = document.getElementById("webpage-countdown");
+                var webpagePercent = webpageTimer * 100000 / totalTime;
+                webpageCountdown.innerText = "This webpage has been open for "
+                    + webpageTimer.toString() + " seconds. "
+                    + (webpagePercent < 1e-6 ? webpagePercent.toFixed(11) : webpagePercent.toPrecision(5)) + "% of the "
+                    + " 47-week field trip has passed during this time."
+
+                var fieldTripAmt = Math.floor(fractionPassed * 3600 * 7);
+                var fieldTripSeconds = (fieldTripAmt + 6000) % 60;
+                var fieldTripMinutes = (Math.floor(fieldTripAmt / 60) + 60) % 60;
+                var fieldTripHours = Math.floor(fieldTripAmt / 3600);
+                var fieldTripElem = document.getElementById("field-trip");
+                fieldTripElem.innerText = "Were the 47-week field trip an actual " +
+                    "Mathcamp field trip from 9AM to 4PM, right now would be " +
+                    (fieldTripHours <= 3 ? 9 + fieldTripHours : fieldTripHours - 3).toString()
+                    + ":" + zeropad(fieldTripMinutes) + ":"
+                    + zeropad(fieldTripSeconds) + (fieldTripHours <= 3 ? "AM" : "PM")
+                    + ".";
+            }, 1000);
+        </script>
+    </head>
+    <body>
+        <h1>Meaningless Counters Stepping as time Passes</h1>
+        <div id="subtitle">(aka Countdown to Mathcamp 2022)</div>
+        <div id="countdown-wdhms"></div>
+        <div id="countdown-s"></div>
+        <div id="countdown-percent"></div>
+        <div id="progress-bar">
+        <div id="progress">
+            &nbsp;
+        </div>
+        </div>
+        <div id="xkcd1017-outer">
+        <span id="xkcd1017"></span> (<a href="https://xkcd.com/1017/">xkcd 1017</a>; <em>won't really function until around mid-August</em>)
+        </div>
+        <div id="field-trip">
+        </div>
+        <div id="webpage-countdown">
+
+        </div>
+        <div id="footnotes">
+            All values displayed are based on your computer's local time, a Mathcamp 2021 end date of August 9, 2021 at midnight, and a Mathcamp 2022 start date of July 2, 2022 at midnight. The latter date will be adjusted when the exact date is available, probably around January 2022.
+        </div>
+    </body>
+</html>
