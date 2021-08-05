@@ -43,7 +43,7 @@
             }
             setInterval(function() {
                 var now = new Date();
-                var webpageTimer = (now.getTime() - webpageStart.getTime()) / 1000;
+                var webpageTimer = Math.round((now.getTime() - webpageStart.getTime()) / 1000);
                 var msDiff = goal.getTime() - now.getTime();
                 var weeks = Math.floor(msDiff / (7 * 86400 * 1000));
                 var days = Math.floor(msDiff / (86400 * 1000)) % 7;
