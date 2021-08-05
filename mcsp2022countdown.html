@@ -37,13 +37,13 @@
         </style>
         <script>
             var goal = new Date(2022, 6, 2, 0, 0, 0, 0);
-            var webpageTimer = 0;
+            var webpageStart = new Date();
             function zeropad(x) {
                 return x < 10 ? "0" + x.toString() : x.toString();
             }
             setInterval(function() {
-                webpageTimer++;
                 var now = new Date();
+                var webpageTimer = (now.getTime() - webpageStart.getTime()) / 1000;
                 var msDiff = goal.getTime() - now.getTime();
                 var weeks = Math.floor(msDiff / (7 * 86400 * 1000));
                 var days = Math.floor(msDiff / (86400 * 1000)) % 7;
