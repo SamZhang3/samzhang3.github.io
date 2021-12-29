@@ -89,7 +89,7 @@
                     "Mathcamp field trip from 9AM to 4PM, right now would be " +
                     (fieldTripHours <= 3 ? 9 + fieldTripHours : fieldTripHours - 3).toString()
                     + ":" + zeropad(fieldTripMinutes) + ":"
-                    + zeropad(fieldTripSeconds) + (fieldTripHours <= 3 ? "AM" : "PM")
+                    + zeropad(fieldTripSeconds) + (fieldTripHours <= 2 ? "AM" : "PM")
                     + ".";
             }, 1000);
         </script>
