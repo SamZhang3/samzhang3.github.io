@@ -36,7 +36,7 @@
             }
         </style>
         <script>
-            var goal = new Date(2022, 6, 3, 0, 0, 0, 0);
+            var goal = new Date(2023, 6, 2, 0, 0, 0, 0);
             var webpageStart = new Date();
             function zeropad(x) {
                 return x < 10 ? "0" + x.toString() : x.toString();
@@ -55,7 +55,7 @@
                 var Selem = document.getElementById("countdown-s");
                 Selem.innerText = Math.floor(msDiff / 1000) + " seconds";
                 var percentElem = document.getElementById("countdown-percent");
-                var totalTime = goal.getTime() - new Date(2021, 7, 9, 0, 0, 0, 0).getTime();
+                var totalTime = goal.getTime() - new Date(2022, 7, 7, 12, 0, 0, 0).getTime();
                 var fractionPassed = (totalTime - msDiff) / totalTime;
                 percentElem.innerText = (100 * fractionPassed).toFixed(8) + "%";
 
@@ -95,12 +95,12 @@
         </script>
     </head>
     <body>
-        <div id="notice">
+        <!--<div id="notice">
             This page has been taken down while Mathcamp 2022 is in progress. Stay tuned for 2023.
-        </div>
-        <div id="countdown-body" style="display: none;">
+        </div>-->
+        <div id="countdown-body">
             <h1>Meaningless Counters Stepping as time Passes</h1>
-            <div id="subtitle">(aka Countdown to Mathcamp 2022)</div>
+            <div id="subtitle">(aka Countdown to Mathcamp 2023)</div>
             <div id="countdown-wdhms"></div>
             <div id="countdown-s"></div>
             <div id="countdown-percent"></div>
@@ -118,7 +118,7 @@
 
             </div>
             <div id="footnotes">
-                All values displayed are based on your computer's local time (so those in different time zones will see slightly different values), a Mathcamp 2021 end date of August 9, 2021 at midnight, and a Mathcamp 2022 start date of July 3, 2022 at midnight.
+                All values displayed are based on your computer's local time (so those in different time zones will see slightly different values), a Mathcamp 2022 end date of August 7, 2022 at noon, and a Mathcamp 2023 start date of July 2, 2023 at midnight.
             </div>
         </div>
     </body>
